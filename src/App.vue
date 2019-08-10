@@ -1,26 +1,24 @@
 <template>
-  <div id="app">
-    <HelloWorld/>
-  </div>
+    <div id="app">
+        <router-view :key="key" v-if="$route.meta.keepAlive"></router-view>
+        <router-view v-else></router-view>
+    </div>
 </template>
 
 <script>
-import HelloWorld from './components/Test'
-
 export default {
-  name: 'app',
-  components: { HelloWorld }
-}
+    computed: {
+        key () {
+            return this.$route.fullPath;
+        }
+    }
+};
 </script>
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 </style>
-
